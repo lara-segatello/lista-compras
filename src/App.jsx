@@ -11,7 +11,7 @@ function App() {
 
   function adicionarItem() {
     if (!novoItem.trim()) return;
-    setItens((atual) => [...atual, { id: Date.now(), texto: novoItem }]);
+    setItens((atual) => [...atual, { id: Date.now(), texto: novoItem, comprado: false }]);
     setNovoItem("");
   }
 
@@ -47,18 +47,16 @@ function App() {
       </div>
 
       {
-        itens.length === 0 && <p className="text-gray-500">Sua lista está vazia.</p>
+        itens.length === 0 && ( <p className="text-gray-500">Sua lista está vazia.</p> )
       }
       {
-        itens.map((item) => 
+        itens.map((item) => (
         <ItemLista 
         key={item.id} 
         texto={item.texto} 
         onRemover={() => removerItem(item.id)} 
         onAlternar={() => alternarComprado(item.id)} 
-        />)
-      }
-
+        />))}
     </div>
   );
 }
